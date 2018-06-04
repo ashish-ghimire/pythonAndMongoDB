@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    body {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .navbar {
+        margin-bottom: 20px;
+    }
+    </style>
+    <title>CMPS364 - Mongo + Redis</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/customer/">Customers</a></li>
+                    <li><a href="/product/">Products</a></li>
+                    <li><a href="/order/">Orders</a></li>
+                    <li><a href="/reports/product">Sales Report</a></li>
+                </ul>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+</html>

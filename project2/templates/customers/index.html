@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Customers</h1>
+    </div>
+    <div class="panel-body">
+        <p><a class="btn btn-primary" href="/customer/new">New Customer</a></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{customer.firstName}}</td>
+                    <td>
+                        <a href="/customer/report/{{customer._id}}">{{customer.lastName}}</a></td>
+                    <td>{{customer.street}}</td>
+                    <td>{{customer.city}}</td>
+                    <td>{{customer.state}}</td>
+                    <td>{{customer.zip}}</td>
+                    <td>
+                        <a class='btn btn-default' href='/customer/edit/{{customer._id}}'> Edit </a>
+                    </td>
+                    <td>
+                        <a class='btn btn-danger' href='/customer/delete/{{customer._id}}'> Delete </a>
+                    </td>
+                </tr>
+                {%endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %} {% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>New Product</h1>
+    </div>
+    <div class="panel-body">
+        <form action="/product/edit/{{product._id}}" method="post">
+            <input name="_id" type="hidden" value='{{product._id}}' />
+            <div class="form-group">
+                <input class="form-control" name="name" type="text" placeholder="Name" value='{{product.name}}' />
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="price" type="number" placeholder="Price" value='{{product.price}}' />
+            </div>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layout.html" %} {% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Customers</h1>
+    </div>
+    <div class="panel-body">
+        <h1>{{customer.firstName}} {{customer.lastName}}</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Product</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in customer.orders %}
+                <tr>
+                    <td>{{order._id}}</td>
+                    <td>{{order.product.name}}</td>
+                    <td>{{order.date}}</td>
+                </tr>
+                {%endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

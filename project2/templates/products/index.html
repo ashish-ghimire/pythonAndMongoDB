@@ -1,0 +1,34 @@
+{% extends "layout.html" %} {% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Products</h1>
+    </div>
+    <div class="panel-body">
+        <p><a class="btn btn-primary" href="/product/new">New Product</a></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>
+                        <a class='btn btn-default' href='/product/edit/{{product._id}}'> Edit </a>
+                    </td>
+                    <td>
+                        <a class='btn btn-danger' href='/product/delete/{{product._id}}'> Delete </a>
+                    </td>
+                </tr>
+                {%endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

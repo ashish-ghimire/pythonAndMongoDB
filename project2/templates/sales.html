@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Sales Report</h1>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Total Sales</th>
+                    <th>Gross Revenue</th>
+                    <th>Last Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{product.name}}</td>
+                    <td>{{product.total_sales}}</td>
+                    <td>{{product.gross_revenue}}</td>
+                    <td>{{product.last_order_date}}</td>
+                </tr>
+                {%endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

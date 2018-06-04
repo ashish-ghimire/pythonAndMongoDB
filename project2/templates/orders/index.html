@@ -1,0 +1,32 @@
+{% extends "layout.html" %} {% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Orders</h1>
+    </div>
+    <div class="panel-body">
+        <p><a class="btn btn-primary" href="/order/new">New Order</a></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{order.customer.firstName}} {{order.customer.lastName}}</td>
+                    <td>{{order.product.name}}</td>
+                    <td>{{order.date}}</td>
+                    <td>
+                        <a class='btn btn-danger' href='/order/delete/{{order._id}}'> Delete </a>
+                    </td>
+                </tr>
+                {%endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

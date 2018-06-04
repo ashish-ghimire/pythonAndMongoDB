@@ -1,0 +1,13 @@
+{% extends "layout.html" %} {% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Confirm Deletion</h1>
+        <p> Do you really want to delete {{product.name}}?</p>
+    </div>
+    <div class="panel-body">
+        <form action="/product/delete/{{product._id}}" method="post">
+            <button class="btn btn-primary" type="submit">Delete</button><a class="btn btn-default" style="margin-left:1em" href="/products">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
