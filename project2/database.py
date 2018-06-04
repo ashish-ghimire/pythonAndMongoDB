@@ -120,7 +120,7 @@ def upsert_product(product):
 def delete_product(id):
     products.delete_one({'_id' : ObjectId(id)})
     orders.delete_many({'productId' : ObjectId(id)})    #Cascading
-    redisConn.delete(str(id))
+    redisConn.delete(id)
 
 def get_orders():
     allOrders = orders.find({})
@@ -143,13 +143,12 @@ def upsert_order(order):
     orders.insert_one(documentToInsert)
 
     #Invalidate Redis cache
-    keyToDelete = str(documentToInsert['productId'])
-    redisConn.delete(keyToDelete)
+    redisConn.delete( documentToInsert['productId'])
 
 def delete_order(id):
     #Whenever an order is deleted, we need to Invalidate redis cache associated with the product in that order
     tempOrder = orders.find_one({'_id' : ObjectId(id)})
-    keyToDelete = str(tempOrder['productId'])
+    keyToDelete = tempOrder['productId']
     redisConn.delete(keyToDelete)
 
     #Finally, delete the order from the database
@@ -166,13 +165,12 @@ def sales_report():
     productsList = list()
 
     for oneproduct in products.find({}):
-        prodId = str(oneproduct['_id'])
+        prodId = oneproduct['_id']
         hashToLookFor = redisConn.hgetall(prodId)
 
         if not redisConn.exists(prodId): #The hash is not present
             tempOrders = orders.find({'productId' : prodId})
             tempOrders = sorted(tempOrders, key=lambda k: k['date'])
-            print(tempOrders)
             oneproduct['total_sales'] = len(tempOrders)
             oneproduct['gross_revenue'] = len(tempOrders) * oneproduct['price']
 
